@@ -23,8 +23,8 @@
  *   getComposition(Math.sin, Math.asin)(x) => Math.sin(Math.asin(x))
  *
  */
-function getComposition(/* f, g */) {
-  throw new Error('Not implemented');
+function getComposition(f, g) {
+  return (x) => f(g(x));
 }
 
 
@@ -44,8 +44,9 @@ function getComposition(/* f, g */) {
  *   power05(16) => 4
  *
  */
-function getPowerFunction(/* exponent */) {
-  throw new Error('Not implemented');
+function getPowerFunction(exponent) {
+  // eslint-disable-next-line no-restricted-properties
+  return (x) => Math.pow(x, exponent);
 }
 
 
@@ -63,7 +64,26 @@ function getPowerFunction(/* exponent */) {
  *   getPolynom()      => null
  */
 function getPolynom() {
-  throw new Error('Not implemented');
+  // eslint-disable-next-line prefer-rest-params
+  const arg = [].slice.call(arguments);
+  let y = 0;
+  return (x) => {
+    if (arg.length === 3) {
+      y = arg[0] * x ** 2 + arg[1] * x + arg[2];
+    }
+    if (arg.length === 2) {
+      y = arg[0] * x + arg[1];
+    }
+    if (arg.length === 1) {
+      // eslint-disable-next-line prefer-destructuring
+      y = arg[0];
+    }
+    if (arg.length === 0) {
+      y = null;
+    }
+
+    return y;
+  };
 }
 
 
@@ -81,8 +101,16 @@ function getPolynom() {
  *   ...
  *   memoizer() => the same random number  (next run, returns the previous cached result)
  */
-function memoize(/* func */) {
-  throw new Error('Not implemented');
+function memoize(func) {
+  const cacheObj = {};
+
+  return (...args) => {
+    const key = JSON.stringify(args);
+    if (!(key in cacheObj)) {
+      cacheObj[key] = func.apply(this, args);
+    }
+    return cacheObj[key];
+  };
 }
 
 
@@ -147,8 +175,8 @@ function logger(/* func, logFunc */) {
  *   partialUsingArguments(fn, 'a','b','c')('d') => 'abcd'
  *   partialUsingArguments(fn, 'a','b','c','d')() => 'abcd'
  */
-function partialUsingArguments(/* fn, ...args1 */) {
-  throw new Error('Not implemented');
+function partialUsingArguments(fn, ...args1) {
+  return (...args) => fn(...args1, ...args);
 }
 
 
