@@ -31,9 +31,9 @@
 function willYouMarryMe(isPositiveAnswer) {
   return new Promise(((resolve, reject) => {
     if (isPositiveAnswer === true) {
-      resolve('Hooray!!! She said "Yes"!').then((answer) => console.log(answer));
+      resolve('Hooray!!! She said "Yes"!').then((answer) => (answer));
     } else if (isPositiveAnswer === false) {
-      resolve('Oh no, she said "No".').then((answer) => console.log(answer));
+      resolve('Oh no, she said "No".').then((answer) => (answer));
     } else {
       // eslint-disable-next-line prefer-promise-reject-errors
       reject(new Error('Wrong parameter is passed! Ask her again.'));
