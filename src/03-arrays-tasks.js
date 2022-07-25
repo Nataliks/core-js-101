@@ -476,12 +476,12 @@ function sortCitiesArray(arr) {
  */
 function getIdentityMatrix(n) {
   // eslint-disable-next-line max-len
-  const resArr = Array(n).fill(Array(n).fill(0)).map((itemArr, index) => itemArr.map((_item, ind) => {
+  const res = Array(n).fill(Array(n).fill(0)).map((itemArr, index) => itemArr.map((_item, ind) => {
     if (index === ind) {
       return 1;
     } return 0;
   }));
-  return resArr;
+  return res;
 }
 
 /**
